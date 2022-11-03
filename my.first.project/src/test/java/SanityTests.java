@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 
-public class NewTest {
+public class SanityTests {
   @Test
   public void canRunTestNgTest() {
 	  // If this doesn't pass then nothing will
