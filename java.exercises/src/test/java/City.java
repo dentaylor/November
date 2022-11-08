@@ -1,8 +1,6 @@
 
-public class City {
-	public String Name;
-
-	public City(String string) {
-		this.Name = string;
+public class City extends GeneralData {
+	public City(String name) {
+		super(name);
 	}
 }

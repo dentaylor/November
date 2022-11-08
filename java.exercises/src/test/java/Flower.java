@@ -1,8 +1,6 @@
 
-public class Flower {
-	public String Name;
-
+public class Flower extends GeneralData {
 	public Flower(String name) {
-		this.Name = name;
+		super(name);
 	}
 }
