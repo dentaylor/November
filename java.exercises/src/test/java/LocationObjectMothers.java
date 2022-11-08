@@ -1,6 +1,5 @@
 
 public class LocationObjectMothers {
-
 	public static LocationObjectMother Houston() {
 		return new LocationBuilder()
 				.WithState(States.Texas)
@@ -22,4 +21,5 @@ public class LocationObjectMothers {
 				.WithFlower(Flowers.Sagauro)
 				.Build();
 	}
+
 }

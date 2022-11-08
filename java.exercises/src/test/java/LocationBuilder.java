@@ -1,6 +1,5 @@
 
 public class LocationBuilder {
-
 	private LocationObjectMother locationObjectMother;
 
 	public LocationBuilder() {
