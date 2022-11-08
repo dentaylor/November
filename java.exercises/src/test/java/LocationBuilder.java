@@ -22,4 +22,9 @@ public class LocationBuilder {
 	public LocationObjectMother Build() {
 		return this.locationObjectMother;
 	}
+
+	public LocationBuilder WithFlower(Flower flower) {
+		this.locationObjectMother.Flower = flower;
+		return this;
+	}
 }
