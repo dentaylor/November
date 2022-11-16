@@ -1,5 +1,6 @@
 package data.access;
 
 public interface DataRow {
-	String[] GetColumns();
+	String[] getColumns();
+	String getCellValue(String columnName);
 }
