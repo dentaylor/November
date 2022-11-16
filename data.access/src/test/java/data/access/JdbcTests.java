@@ -4,17 +4,9 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.ArrayList;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class JdbcTests {
-	private DatabaseUtility accessor;
-
-	@BeforeMethod 
-	public void Setup() {
-		var connectionString = "jdbc:mysql://localhost/sakila?user=dtaylor&password=1234";
-		this.accessor = new DatabaseUtility(connectionString);
-	}
+public class JdbcTests extends DatabaseTests {
 
 	@Test
 	public void canGet10CitiesInDescAlphaOrder() {
@@ -30,9 +22,7 @@ public class JdbcTests {
 				,"Zalantun"
 				,"Yuzhou"};
 
-		var sql = "SELECT city FROM city ORDER BY city DESC LIMIT 10;";
-
-		var result = this.accessor.executeSingleColumn(sql);
+		var result = this.sakilaQueries.get10CitiesInDescAlphaOrder();
 
 		assertEquals(result, expectedResult, "the query should return the cities in order.");
 	}
@@ -41,9 +31,7 @@ public class JdbcTests {
 	public void canGetHighestPaymentAmount() {
 		var expectedResult = "11.99";
 
-		var sql = "SELECT MAX(amount) FROM PAYMENT";
-
-		var result = this.accessor.executeSingleCell(sql);
+		var result = this.sakilaQueries.getHighestPaymentAmount();
 
 		assertEquals(result, expectedResult, "the query should return a single cell.");
 	}
@@ -65,10 +53,7 @@ public class JdbcTests {
                 + "Sci-Fi: RAGING AIRPLANE; "
                 + "Travel: LEATHERNECKS DWARFS, SHAWSHANK BUBBLE";
 		
-		var sql = "select film_info from actor_info where actor_id = "
-				+ "(select actor_id from actor where first_name = 'Bob' and last_name = 'Fawcett');";
-		
-		var result = this.accessor.executeSingleCell(sql);
+		var result = this.sakilaQueries.getFilmInfo();
 
 		assertEquals(result, expectedResult, "the query should return a single cell with the film info.");
 	}
@@ -85,10 +70,8 @@ public class JdbcTests {
 		expectedResult.add(row2);
 		expectedResult.add(row3);
 		expectedResult.add(row4);
-		
-		var sql = "call film_in_stock((select film_id from film as f where f.title = 'Alien Center'), 2, @out_value)";
-		
-		var result = this.accessor.execute(sql);
+			
+		var result = this.sakilaQueries.getFilmIds();
 
 		assertEquals(result, expectedResult, "the query should the film ids.");	
 	}
