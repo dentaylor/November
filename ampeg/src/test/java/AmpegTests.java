@@ -6,11 +6,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class AmpegTests {
-
 	protected WebDriver driver;
+	protected String baseUrl;
 
 	@BeforeMethod
 	public void beforeMethod() {
+		this.baseUrl = "https://www.ampeg.com/";
 		this.launchDriver();
 	}
 
@@ -28,12 +29,12 @@ public abstract class AmpegTests {
 
 	private void launchDriver() {
 		var driverPath = "C:\\Users\\dtaylor\\Downloads\\chromedriver_win32\\chromedriver.exe";
-		var url = "https://www.ampeg.com/";
 		System.setProperty("webdriver.chrome.driver", driverPath);
 
-		this.driver = new ChromeDriver();
+		this.driver = new ChromeDriver();		
+		
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		this.driver.manage().window().maximize();
-		this.driver.navigate().to(url);
+		this.driver.navigate().to(this.baseUrl);
 	}
 }

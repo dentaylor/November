@@ -3,8 +3,8 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductDetailPage extends PageObject {
 
-	public ProductDetailPage(WebDriver driver) {
-		super(driver);
+	public ProductDetailPage(WebDriver driver, String baseUrl) {
+		super(driver, baseUrl);
 	}
 
 	public String getArtistName() {
