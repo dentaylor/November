@@ -17,11 +17,11 @@ public class Table extends ControlExtension implements ControlExtensions.Table {
 		return new TableRow(
 				mappedElement.findElement(By.xpath(String.format("//div[@class='rt-tr-group'][%d]", ordinalRow))));
 	}
-	
+
 	public TableRow[] getRows() {
 		List<TableRow> returnRows = new ArrayList<TableRow>();
 		List<WebElement> foundRows = mappedElement.findElements(By.xpath("//div[@class='rt-tr-group']"));
-		for(WebElement element : foundRows ) {
+		for (WebElement element : foundRows) {
 			returnRows.add(new TableRow(element));
 		}
 		return returnRows.toArray(new TableRow[0]);

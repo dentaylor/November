@@ -34,6 +34,6 @@ public class WebTableTests extends TestBase {
 
 		var actualState = page.getTable().getRow(2).getElement().getText();
 
-		assertEquals(actualState, expectedState, "getRow should return a row");
+		assertEquals(actualState, expectedState, "getRow should return the second row");
 	}
 }
