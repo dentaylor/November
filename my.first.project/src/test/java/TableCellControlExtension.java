@@ -8,6 +8,9 @@ public class TableCellControlExtension implements TableCell {
 	public TableCellControlExtension (WebElement mappedElement) {
 		this.mappedElement = mappedElement;
 	}
+	public TableCellControlExtension(Object webElement) {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String getValue() {
 		String value = mappedElement.getText();

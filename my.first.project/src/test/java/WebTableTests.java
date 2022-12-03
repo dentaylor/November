@@ -7,11 +7,11 @@ import foundation.TestBase;
 
 public class WebTableTests extends TestBase {
 
-	webtablesPage page;
+	WebTablesPage page;
 
 	@BeforeMethod
 	public void Startup() {
-		page = new webtablesPage(this.driver).navigate();
+		page = new WebTablesPage(this.driver).navigate();
 	}
 
 	@Test
