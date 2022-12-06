@@ -23,16 +23,16 @@ public class TableRowTests extends TestBase{
 	  var expectedCell = this.driver.findElement(By.xpath("//DIV[@class='rt-td'][.='Cantrell']")).getText();
 	  
 	  var actualCell = new WebTablesPage(this.driver)
-			  .getCell(1).getElement().getText();
+			  .getTableCell(1).getElement().getText();
 	  
 	  assertEquals(actualCell, expectedCell, "This should return the second web element");
   }
   
   @Test
   public void outOfBoundsTestForColumnLength() {
-	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getCell(10));
-	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getCell('a'));
-	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getCell(-5)); 
+	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getTableCell(10));
+	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getTableCell('a'));
+	  assertThrows(IOBE, () -> new WebTablesPage(this.driver).getTableCell(-5)); 
   }
   
   @Test
@@ -40,7 +40,7 @@ public class TableRowTests extends TestBase{
 	  short val = 2;
 	  var expectedCell = this.driver.findElement(By.xpath("//DIV[@class='rt-td'][.='45']")).getText();
 	  
-	  var actualCell = new WebTablesPage(this.driver).getCell(val).getElement().getText();
+	  var actualCell = new WebTablesPage(this.driver).getTableCell(val).getElement().getText();
 	  
 	  assertEquals(actualCell, expectedCell, "This should return the third element");
 	  
@@ -50,7 +50,7 @@ public class TableRowTests extends TestBase{
   public void canGetLowestCell() {
 	  var expectedCell = this.driver.findElement(By.xpath("//DIV[@class='rt-td'][.='Alden']")).getText();
 	  
-	  var actualCell = new WebTablesPage(this.driver).getCell(0).getElement().getText();
+	  var actualCell = new WebTablesPage(this.driver).getTableCell(0).getElement().getText();
 	  
 	  assertEquals(actualCell, expectedCell, "This should return the first element");
   }

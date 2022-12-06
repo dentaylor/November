@@ -5,22 +5,27 @@ import org.openqa.selenium.support.How;
 
 import ControlExtensions.Angular.Table;
 
-public class webtablesPage extends PageObject {
+public class WebTablesPage extends PageObject {
 
 	@FindBy(how = How.CLASS_NAME, using = "rt-table")
 	private WebElement webTable;
 
-	public webtablesPage(WebDriver driver) {
+	public WebTablesPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public webtablesPage navigate() {
+	public WebTablesPage navigate() {
 		this.driver.get("https://demoqa.com/webtables");
 		return this;
 	}
 
 	public Table getTable() {
 		return new Table(webTable);
+	}
+
+	public TableCell getTableCell(int s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
