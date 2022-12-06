@@ -30,4 +30,21 @@ public class WebTablesPage extends PageObject {
 		return null;
 	}
 
+	public String getAgeOfDepartmentEmployee(String department) {
+		var row = getTable().findRow(TableColumnNames.Department, department);
+
+		if(row < 1) {
+			throw new RuntimeException("Department '" +department+ "' could not be found.");
+		}
+
+		var age = getTable().getRow(row).getCell(TableColumnNames.Age).getValue();
+
+		return age;
+	}
+
+	public class TableColumnNames {
+		public static final int Age = 2;
+		public static final int Department = 5;
+		public static final int FirstName = 0;
+	}
 }

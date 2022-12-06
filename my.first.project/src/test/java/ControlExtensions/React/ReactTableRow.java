@@ -1,22 +1,26 @@
 package ControlExtensions.React;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import ControlExtensions.TableCell;
+public class ReactTableRow implements ControlExtensions.TableRow{
+	private WebElement mappedElement;
 
-public class ReactTableRow extends ControlExtensions.ControlExtension implements ControlExtensions.TableRow {
-
-	public ReactTableRow(WebElement findElement) {
-		super(findElement);
+	public ReactTableRow(WebElement mappedElement) {
+		this.mappedElement = mappedElement;
 	}
 
 	@Override
-	public TableCell getCell(int index) {
-		return null;
-	}
-	
-	public WebElement getElement() {
-		return this.mappedElement;
-	}
+	public ReactTableCell getCell(int columnIndex) {
+		var cellElements = mappedElement.findElements(By.cssSelector("div[role=gridcell]"));
+		var cellElement = cellElements.get(columnIndex);
+		var cellElementsCount = cellElements.size();
+		var isValidColumnIndex = columnIndex < cellElementsCount && columnIndex > -1;
 
+		if(!isValidColumnIndex) {
+			throw new RuntimeException(columnIndex + " is not a valid column index. Ensure that row count is less than " + columnIndex);
+		}
+		
+		return new ReactTableCell(cellElement);
+	}
 }

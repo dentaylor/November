@@ -19,34 +19,45 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 	}
 
 	public ReactTableRow[] getRows() {
+		var rowElements = getRowElements();
+		
 		List<ReactTableRow> returnRows = new ArrayList<ReactTableRow>();
-		List<WebElement> foundRows = mappedElement.findElements(By.xpath("//div[@class='rt-tr-group']"));
-		for (WebElement element : foundRows) {
+		
+		for (WebElement element : rowElements) {
 			returnRows.add(new ReactTableRow(element));
 		}
 		return returnRows.toArray(new ReactTableRow[0]);
 	}
+	
+	public List<WebElement> getRowElements() {
+		var tableBody = mappedElement.findElement(By.cssSelector(".rt-tbody"));
+		var rowElements = tableBody.findElements(By.cssSelector("div[role=row]"));
+		
+		return rowElements;
+	}
 
 	@Override
 	public int findRow(int columnIndex, String cellValue) {
+		var rowElements = getRowElements();
+		var rowElementsCount = rowElements.size();
 
-		List<WebElement> tableBody = mappedElement
-				.findElements(By.cssSelector("div.rt-td:nth-child(" + columnIndex + ")"));
+		for(var row = 0; row < rowElementsCount; row++) {
+			var rowElement = rowElements.get(row);
+			var cellElements = rowElement.findElements(By.cssSelector("div[role=gridcell]"));
+			var cellElementsCount = cellElements.size();
+			var isValidColumnIndex = columnIndex < cellElementsCount && columnIndex > -1;
 
-		try {
-			int i = 1;
-			for (WebElement row : tableBody) {
-				if (row.getText().equalsIgnoreCase(cellValue)) {
-					return i;
-				}
-
-				i++;
+			if(!isValidColumnIndex) {
+				throw new RuntimeException(columnIndex + " is not a valid column index. Ensure that row count is less than " + columnIndex);
 			}
-			throw new Exception("Element not found");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 
+			var cellElement = cellElements.get(columnIndex);
+			var textToMatch = cellElement.getText();
+
+			if (textToMatch.equalsIgnoreCase(cellValue)) {
+				return row + 1;
+			}
+		}
+		return 0;
 	}
 }

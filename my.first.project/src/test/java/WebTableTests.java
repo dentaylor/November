@@ -1,4 +1,5 @@
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,30 +12,39 @@ public class WebTableTests extends TestBase {
 	WebTablesPage page;
 
 	@BeforeMethod
-	public void Startup() {
+	public void startup() {
 		page = new WebTablesPage(this.driver).navigate();
 	}
 
 	@Test
 	public void canFindRow() {
+		int columnIndex = 1;
+		var cellValue = "Cantrell";
+		var expectedRowNumber = 2;
 
-		var expectedState = 2;
+		var rowNumber = page.getTable().findRow(columnIndex, cellValue);
 
-		var table = page.getTable();
-
-		var actualState = table.findRow(2, "Cantrell");
-
-		assertEquals(actualState, expectedState);
-
+		assertEquals(rowNumber, expectedRowNumber, "row number should be found.");
 	}
 
 	@Test
 	public void canGetRow() {
+		
+		var table = page.getTable();
+		var expectedRow = table.getRows()[0].getCell(0).getValue();
 
-		var expectedState = page.getTable().getRows()[1].getElement().getText();
+		var row = table.getRow(1).getCell(0).getValue();
 
-		var actualState = page.getTable().getRow(2).getElement().getText();
+		assertNotNull(row, "getValue should return a value.");
+		assertEquals(row, expectedRow, "getRow should return the second row");
+	}
+	
+	@Test
+	public void returnsZeroWhenRowNotFound() {
+		var rowNotFoundRowNumber = 0;
+		
+		var row = page.getTable().findRow(WebTablesPage.TableColumnNames.FirstName, "dummy");
 
-		assertEquals(actualState, expectedState, "getRow should return the second row");
+		assertEquals(row, rowNotFoundRowNumber, "findRow should return zero.");
 	}
 }

@@ -2,21 +2,22 @@ package ControlExtensions.React;
 
 import org.openqa.selenium.WebElement;
 
-public class ReactTableCell implements ControlExtensions.TableCell{
+import ControlExtensions.TableCell;
 
-	private WebElement tableCellElement;
-	
-	public ReactTableCell(WebElement tableCellElement) {
-		this.tableCellElement = tableCellElement;
+public class ReactTableCell implements TableCell {
+
+	WebElement mappedElement;
+
+	public ReactTableCell (WebElement mappedElement) {
+		this.mappedElement = mappedElement;
 	}
-	
+
 	@Override
 	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return mappedElement.getText();
 	}
 	
-	public WebElement getElement() {
-		return this.tableCellElement;
+	public WebElement unWrap() {
+		return mappedElement;
 	}
 }
