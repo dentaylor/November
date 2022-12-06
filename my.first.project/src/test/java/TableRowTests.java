@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import Pages.WebTablesPage;
 import foundation.TestBase;
 
 public class TableRowTests extends TestBase{

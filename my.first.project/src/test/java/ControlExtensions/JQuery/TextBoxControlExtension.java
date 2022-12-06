@@ -1,11 +1,11 @@
 package ControlExtensions.JQuery;
 
 import org.openqa.selenium.WebElement;
-import ControlExtensions.ITextBox;
+import ControlExtensions.TextBox;
 
-public class TextBox extends ControlExtensions.ControlExtension implements ITextBox {
+public class TextBoxControlExtension extends ControlExtensions.ControlExtension implements TextBox {
 
-	public TextBox(WebElement mappedElement) {
+	public TextBoxControlExtension(WebElement mappedElement) {
 		super(mappedElement);
 	}
 

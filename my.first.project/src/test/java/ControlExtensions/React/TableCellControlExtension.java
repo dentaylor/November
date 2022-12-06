@@ -1,3 +1,5 @@
+package ControlExtensions.React;
+
 import org.openqa.selenium.WebElement;
 
 import ControlExtensions.TableCell;

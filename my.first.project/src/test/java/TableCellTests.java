@@ -4,6 +4,8 @@ import static org.testng.Assert.assertThrows;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import ControlExtensions.React.TableCellControlExtension;
+import Pages.WebTablesPage;
 import foundation.TestBase;
 
 public class TableCellTests extends TestBase {

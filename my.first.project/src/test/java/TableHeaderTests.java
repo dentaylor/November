@@ -1,5 +1,3 @@
-package ControlExtensions.Angular;
-
 import org.testng.annotations.Test;
 
 import ControlExtensions.React.ReactTableHeader;

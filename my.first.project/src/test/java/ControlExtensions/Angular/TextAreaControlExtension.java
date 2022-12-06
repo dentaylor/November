@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 
 import ControlExtensions.ControlExtension;
 
-public class TextArea extends ControlExtension {
+public class TextAreaControlExtension extends ControlExtension {
 
-	public TextArea(WebElement mappedElement) {
+	public TextAreaControlExtension(WebElement mappedElement) {
 		super(mappedElement);
 	}
 

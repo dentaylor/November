@@ -2,6 +2,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
 
+import Pages.ComplicatedPage;
 import foundation.TestBase;
 
 public class ControlExtensionTests extends TestBase {

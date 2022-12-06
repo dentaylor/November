@@ -1,6 +1,6 @@
 package ControlExtensions;
 
-public interface ITextBox {
+public interface TextBox {
 
 	void setValue(String value);
 

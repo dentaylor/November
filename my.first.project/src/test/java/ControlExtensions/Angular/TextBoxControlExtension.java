@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import ControlExtensions.ControlExtension;
-import ControlExtensions.ITextBox;
+import ControlExtensions.TextBox;
 
-public class TextBox extends ControlExtension implements ITextBox {
+public class TextBoxControlExtension extends ControlExtension implements TextBox {
 
-	public TextBox(WebElement mappedElement) {
+	public TextBoxControlExtension(WebElement mappedElement) {
 		super(mappedElement);
 	}
 
