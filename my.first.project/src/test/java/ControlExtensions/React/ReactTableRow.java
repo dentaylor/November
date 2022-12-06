@@ -1,12 +1,12 @@
-package ControlExtensions.Angular;
+package ControlExtensions.React;
 
 import org.openqa.selenium.WebElement;
 
 import ControlExtensions.TableCell;
 
-public class TableRow extends ControlExtension implements ControlExtensions.TableRow {
+public class ReactTableRow extends ControlExtensions.ControlExtension implements ControlExtensions.TableRow {
 
-	public TableRow(WebElement findElement) {
+	public ReactTableRow(WebElement findElement) {
 		super(findElement);
 	}
 

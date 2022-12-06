@@ -1,10 +1,12 @@
+package ControlExtensions.React;
+
 import org.openqa.selenium.WebElement;
 
-public class TableCell implements ControlExtensions.TableCell{
+public class ReactTableCell implements ControlExtensions.TableCell{
 
 	private WebElement tableCellElement;
 	
-	public TableCell(WebElement tableCellElement) {
+	public ReactTableCell(WebElement tableCellElement) {
 		this.tableCellElement = tableCellElement;
 	}
 	

@@ -1,7 +1,8 @@
 package ControlExtensions.Angular;
 
 import org.testng.annotations.Test;
-import foundation.ReactTableHeader;
+
+import ControlExtensions.React.ReactTableHeader;
 import foundation.TestBase;
 
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ public class TableHeaderTests extends TestBase {
 		expectedMap.put(5, "Department");
 		expectedMap.put(6, "Action");
 
-		Map<Integer, String> actualMap = new ReactTableHeader(element).getColumnNamesByColumnIndex();
+		Map<Integer, String> actualMap = new ControlExtensions.React.ReactTableHeader(element).getColumnNamesByColumnIndex();
 
 		assertTrue(expectedMap.equals(actualMap));
 	}

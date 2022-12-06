@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import ControlExtensions.React.ReactTableCell;
+
 public class TableRow implements ControlExtensions.TableRow{
 	
 	private WebElement tableRowElement;
@@ -13,9 +15,9 @@ public class TableRow implements ControlExtensions.TableRow{
 	}
 
 	@Override
-	public TableCell getCell(int columnIndex) {
+	public ReactTableCell getCell(int columnIndex) {
 		tableCellElements.addAll(tableRowElement.findElements(By.className("rt-td")));
-		TableCell tableCell = new TableCell(tableCellElements.get(columnIndex));                      
+		ReactTableCell tableCell = new ReactTableCell(tableCellElements.get(columnIndex));                      
 		return tableCell;
 	}
 }

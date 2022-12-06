@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import ControlExtensions.Angular.Table;
+import ControlExtensions.React.ReactTableCell;
 
 public class WebTablesPage extends PageObject {
 
@@ -19,11 +19,11 @@ public class WebTablesPage extends PageObject {
 		return this;
 	}
 
-	public Table getTable() {
-		return new Table(webTable);
+	public ControlExtensions.React.ReactTable getTable() {
+		return new ControlExtensions.React.ReactTable(webTable);
 	}
 
-	public TableCell getTableCell(int s) {
+	public ReactTableCell getTableCell(int s) {
 		// TODO Auto-generated method stub
 		return null;
 	}

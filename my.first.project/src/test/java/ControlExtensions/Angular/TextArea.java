@@ -3,6 +3,8 @@ package ControlExtensions.Angular;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import ControlExtensions.ControlExtension;
+
 public class TextArea extends ControlExtension {
 
 	public TextArea(WebElement mappedElement) {

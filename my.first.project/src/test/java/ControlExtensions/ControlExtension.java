@@ -1,4 +1,4 @@
-package ControlExtensions.Angular;
+package ControlExtensions;
 
 import org.openqa.selenium.WebElement;
 

@@ -2,6 +2,8 @@ package ControlExtensions.Angular;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import ControlExtensions.ControlExtension;
 import ControlExtensions.ITextBox;
 
 public class TextBox extends ControlExtension implements ITextBox {

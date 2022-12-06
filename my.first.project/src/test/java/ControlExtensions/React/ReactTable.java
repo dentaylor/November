@@ -1,4 +1,4 @@
-package ControlExtensions.Angular;
+package ControlExtensions.React;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,25 +6,25 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class Table extends ControlExtension implements ControlExtensions.Table {
+public class ReactTable extends ControlExtensions.ControlExtension implements ControlExtensions.Table {
 
-	public Table(WebElement mappedElement) {
+	public ReactTable(WebElement mappedElement) {
 		super(mappedElement);
 	}
 
 	@Override
-	public TableRow getRow(int ordinalRow) {
-		return new TableRow(
+	public ReactTableRow getRow(int ordinalRow) {
+		return new ReactTableRow(
 				mappedElement.findElement(By.xpath(String.format("//div[@class='rt-tr-group'][%d]", ordinalRow))));
 	}
 
-	public TableRow[] getRows() {
-		List<TableRow> returnRows = new ArrayList<TableRow>();
+	public ReactTableRow[] getRows() {
+		List<ReactTableRow> returnRows = new ArrayList<ReactTableRow>();
 		List<WebElement> foundRows = mappedElement.findElements(By.xpath("//div[@class='rt-tr-group']"));
 		for (WebElement element : foundRows) {
-			returnRows.add(new TableRow(element));
+			returnRows.add(new ReactTableRow(element));
 		}
-		return returnRows.toArray(new TableRow[0]);
+		return returnRows.toArray(new ReactTableRow[0]);
 	}
 
 	@Override
