@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import ControlExtensions.React.*;
-import Pages.WebTablesPage.TableColumnNames;
 
 public class WebTablesPage extends PageObject {
 
