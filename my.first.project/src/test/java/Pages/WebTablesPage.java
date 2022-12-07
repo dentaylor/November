@@ -55,4 +55,7 @@ public class WebTablesPage extends PageObject {
 		public static final int Department = 5;
 		public static final int FirstName = 0;
 	}
+	public class TableColumnNames {
+		public static final String Salary = "Salary";
+	}
 }

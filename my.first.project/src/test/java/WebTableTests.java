@@ -29,7 +29,7 @@ public class WebTableTests extends TestBase {
 
 	@Test
 	public void canGetRow() {
-		
+
 		var table = page.getTable();
 		var expectedRow = table.getRows()[0].getCell(0).getValue();
 
@@ -38,13 +38,24 @@ public class WebTableTests extends TestBase {
 		assertNotNull(row, "getValue should return a value.");
 		assertEquals(row, expectedRow, "getRow should return the second row");
 	}
-	
+
 	@Test
 	public void returnsZeroWhenRowNotFound() {
 		var rowNotFoundRowNumber = 0;
-		
+
 		var row = page.getTable().findRow(WebTablesPage.TableColumnIndexes.FirstName, "dummy");
 
 		assertEquals(row, rowNotFoundRowNumber, "findRow should return zero.");
+	}
+
+	@Test
+	public void findRowByColumnName() {
+		var columnName = WebTablesPage.TableColumnNames.Salary;
+		var cellValue = "2000";
+		var expectedRowNumber = 3;
+
+		var rowNumber = page.getTable().findRow(columnName, cellValue);
+
+		assertEquals(rowNumber, expectedRowNumber, "row number should be found.");
 	}
 }

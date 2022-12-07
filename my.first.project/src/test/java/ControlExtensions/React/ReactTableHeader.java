@@ -9,6 +9,7 @@ import ControlExtensions.TableHeader;
 public class ReactTableHeader implements TableHeader{
 	private Map<Integer, String> headers;
 	private WebElement parentElement;
+	
 	public ReactTableHeader(WebElement element) {
 		this.parentElement = element;
 		headers = new HashMap<Integer, String>();
@@ -16,8 +17,9 @@ public class ReactTableHeader implements TableHeader{
 
 	@Override
 	public Map<Integer, String> getColumnNamesByColumnIndex() {
-		var elements = parentElement.findElements(By.cssSelector("[class='rt-resizable-header-content']"));
-		int index = 0;
+		var elements = parentElement.findElements(By.cssSelector("[role='columnheader']"));
+		var index = 0;
+		
 		for(var x : elements) {
 			headers.put(index,x.getText());
 			index++;
@@ -25,4 +27,3 @@ public class ReactTableHeader implements TableHeader{
 		return headers;
 	}
 }
-
