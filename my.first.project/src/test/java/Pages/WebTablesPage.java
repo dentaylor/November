@@ -2,7 +2,7 @@ package Pages;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,14 +28,22 @@ public class WebTablesPage extends PageObject {
 		return new ReactTable(webTable);
 	}
 
-	public ReactTableCell getTableCell(int s) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReactTableCell getTableCell(int cellIndex) {
+		var cellElements = webTable.findElements(By.cssSelector("div[role=gridcell]"));
+		var cellElementsCount = cellElements.size();
+		var isValidCellIndex = cellIndex < cellElementsCount && cellIndex > -1;
+
+		if (!isValidCellIndex)
+			throw new IndexOutOfBoundsException(
+					cellIndex + " is not a valid cell index. Ensure that cell count is less than " + cellElementsCount);
+
+		var cellElement = cellElements.get(cellIndex);
+		return new ReactTableCell(cellElement);
 	}
 
 	public String getAgeOfDepartmentEmployee(String department) {
-		var searchColumn = TableColumnNames.Department;
-		var findColumn = TableColumnNames.Age;
+		var searchColumn = TableColumnIndexes.Department;
+		var findColumn = TableColumnIndexes.Age;
 		var row = getTable().findRow(searchColumn, department);
 
 		if (row < 1) {
@@ -46,13 +54,23 @@ public class WebTablesPage extends PageObject {
 
 		return toReturn;
 	}
-	
+
 	public String[] getRoster() {
-		return getColumnValues(TableColumnNames.LastName);
+		var roster = getColumnValues(TableColumnIndexes.LastName);
+		var notNullList = new ArrayList<String>();
+
+		for (String item : roster) {
+			if (item.isBlank()) {
+				break;
+			}
+			notNullList.add(item);
+		}
+
+		return notNullList.toArray(new String[0]);
 	}
 
 	public double avgSalary() {
-		var salaries = getColumnValues(TableColumnNames.Salary);
+		var salaries = getColumnValues(TableColumnIndexes.Salary);
 		double toReturn = 0;
 		int i = 0;
 
@@ -78,13 +96,17 @@ public class WebTablesPage extends PageObject {
 
 		return toReturn.toArray(new String[0]);
 	}
-	
-	public class TableColumnNames {
+
+	public class TableColumnIndexes {
 		public static final int FirstName = 0;
 		public static final int LastName = 1;
 		public static final int Age = 2;
 		public static final int Email = 3;
 		public static final int Salary = 4;
 		public static final int Department = 5;
+	}
+
+	public class TableColumnNames {
+		public static final String Salary = "Salary";
 	}
 }

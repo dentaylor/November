@@ -2,6 +2,7 @@ package ControlExtensions.React;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,24 +15,24 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 
 	@Override
 	public ReactTableRow getRow(int ordinalRow) {
-		return new ReactTableRow(getRowElements().get(ordinalRow-1));
+		return new ReactTableRow(getRowElements().get(ordinalRow - 1));
 	}
 
 	public ReactTableRow[] getRows() {
 		var rowElements = getRowElements();
-		
+
 		List<ReactTableRow> returnRows = new ArrayList<ReactTableRow>();
-		
+
 		for (WebElement element : rowElements) {
 			returnRows.add(new ReactTableRow(element));
 		}
 		return returnRows.toArray(new ReactTableRow[0]);
 	}
-	
+
 	private List<WebElement> getRowElements() {
 		var tableBody = mappedElement.findElement(By.cssSelector(".rt-tbody"));
 		var rowElements = tableBody.findElements(By.cssSelector("div[role=row]"));
-		
+
 		return rowElements;
 	}
 
@@ -40,23 +41,38 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 		var rowElements = getRowElements();
 		var rowElementsCount = rowElements.size();
 
-		for(var row = 0; row < rowElementsCount; row++) {
+		for (var row = 0; row < rowElementsCount; row++) {
 			var rowElement = rowElements.get(row);
 			var cellElements = rowElement.findElements(By.cssSelector("div[role=gridcell]"));
 			var cellElementsCount = cellElements.size();
 			var isValidColumnIndex = columnIndex < cellElementsCount && columnIndex > -1;
 
-			if(!isValidColumnIndex) {
-				throw new RuntimeException(columnIndex + " is not a valid column index. Ensure that row count is less than " + columnIndex);
+			if (!isValidColumnIndex) {
+				throw new RuntimeException(columnIndex
+						+ " is not a valid column index. Ensure that row count is less than " + columnIndex);
 			}
 
 			var cellElement = cellElements.get(columnIndex);
-			var textToMatch = cellElement.getText();
+			var cell = new ReactTableCell(cellElement);
+			var textToMatch = cell.getValue();
 
-			if (textToMatch.equalsIgnoreCase(cellValue)) {
+			if (textToMatch.equals(cellValue)) {
 				return row + 1;
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public int findRow(String columnName, String cellValue) {
+		var columnIndex = 0;
+		var headers = new ReactTableHeader(mappedElement).getColumnNamesByColumnIndex();
+
+		for (var header : headers.entrySet()) {
+			if (header.getValue().equals(columnName)) {
+				columnIndex = header.getKey();
+			}
+		}
+		return findRow(columnIndex, cellValue);
 	}
 }

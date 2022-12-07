@@ -16,8 +16,4 @@ public class ReactTableCell implements TableCell {
 	public String getValue() {
 		return mappedElement.getText();
 	}
-	
-	public WebElement unWrap() {
-		return mappedElement;
-	}
 }

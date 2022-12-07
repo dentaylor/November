@@ -28,7 +28,7 @@ public class EmployeeTests extends TestBase {
 
 	@Test
 	public void canGetColumn() {
-		String[] expected = { "Vega", "Cantrell", "Gentry" };
+		var expected = new String[]{ "Vega", "Cantrell", "Gentry" };
 		var actual = page.getRoster();
 
 		assertEquals(actual, expected, "Column 'Last Name' should have been returned.");
