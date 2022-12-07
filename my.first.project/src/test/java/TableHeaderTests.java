@@ -40,6 +40,8 @@ public class TableHeaderTests extends TestBase {
 
 		assertEquals(headers.get(4), expectedColumnName);	
 	}
+	
+	
 
 	@BeforeMethod
 	public void BeforeMethod() {
