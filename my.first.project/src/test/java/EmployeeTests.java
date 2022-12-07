@@ -1,6 +1,7 @@
 import org.testng.annotations.Test;
 
 import Pages.WebTablesPage;
+import Pages.WebTablesPage.TableColumnNames;
 import foundation.TestBase;
 
 import static org.testng.Assert.assertEquals;
@@ -20,8 +21,24 @@ public class EmployeeTests extends TestBase {
 		var department = "Compliance";
 		var expectedAge = "45";
 
-		var age = page.getAgeOfDepartmentEmployee(department );
+		var age = page.getAgeOfDepartmentEmployee(department);
 
 		assertEquals(age, expectedAge, "ReactTable control extension should get the correct value.");
+	}
+
+	@Test
+	public void canGetColumn() {
+		String[] expected = { "Vega", "Cantrell", "Gentry" };
+		var actual = page.getRoster();
+
+		assertEquals(actual, expected, "Column 'Last Name' should have been returned.");
+	}
+
+	@Test
+	public void canGetAvgSalary() {
+		double expected = 8000;
+		var actual = page.avgSalary();
+
+		assertEquals(actual, expected, "Returned value should be the average salary.");
 	}
 }

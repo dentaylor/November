@@ -13,7 +13,7 @@ public class ChromeDriverManager extends DriverManager {
 	public void createDriver() {
 		String osType = findOS();
 		
-		if(osType.equals("Windows 10")) {
+		if(osType.contains("Windows")) {
 			var driverPath = "C:\\temp\\chromedriver.exe";
 			System.setProperty("webdriver.chrome.driver", driverPath);
 		} 

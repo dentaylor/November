@@ -14,8 +14,7 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 
 	@Override
 	public ReactTableRow getRow(int ordinalRow) {
-		return new ReactTableRow(
-				mappedElement.findElement(By.xpath(String.format("//div[@class='rt-tr-group'][%d]", ordinalRow))));
+		return new ReactTableRow(getRowElements().get(ordinalRow-1));
 	}
 
 	public ReactTableRow[] getRows() {
@@ -29,7 +28,7 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 		return returnRows.toArray(new ReactTableRow[0]);
 	}
 	
-	public List<WebElement> getRowElements() {
+	private List<WebElement> getRowElements() {
 		var tableBody = mappedElement.findElement(By.cssSelector(".rt-tbody"));
 		var rowElements = tableBody.findElements(By.cssSelector("div[role=row]"));
 		
