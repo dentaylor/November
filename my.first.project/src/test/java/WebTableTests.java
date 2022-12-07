@@ -43,7 +43,7 @@ public class WebTableTests extends TestBase {
 	public void returnsZeroWhenRowNotFound() {
 		var rowNotFoundRowNumber = 0;
 		
-		var row = page.getTable().findRow(WebTablesPage.TableColumnNames.FirstName, "dummy");
+		var row = page.getTable().findRow(WebTablesPage.TableColumnIndexes.FirstName, "dummy");
 
 		assertEquals(row, rowNotFoundRowNumber, "findRow should return zero.");
 	}
