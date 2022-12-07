@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,9 +26,16 @@ public class WebTablesPage extends PageObject {
 		return new ControlExtensions.React.ReactTable(webTable);
 	}
 
-	public ReactTableCell getTableCell(int s) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReactTableCell getTableCell(int cellIndex) {
+		var cellElements = webTable.findElements(By.cssSelector("div[role=gridcell]"));
+		var cellElementsCount = cellElements.size();
+		var isValidCellIndex = cellIndex < cellElementsCount && cellIndex > -1;
+
+		if(!isValidCellIndex)
+			throw new IndexOutOfBoundsException(cellIndex + " is not a valid cell index. Ensure that cell count is less than " + cellElementsCount);
+		
+		var cellElement = cellElements.get(cellIndex);
+		return new ReactTableCell(cellElement);
 	}
 
 	public String getAgeOfDepartmentEmployee(String department) {

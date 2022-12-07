@@ -9,7 +9,7 @@ import foundation.TestBase;
 
 public class TableCellTests extends TestBase {
 
-	private static final Class<IllegalStateException> ISE = IllegalStateException.class;
+	private static final Class<IndexOutOfBoundsException> IOOBE = IndexOutOfBoundsException.class;
 
 	@Test
 	public void canGetFrontTableCellBoundary() {
@@ -19,9 +19,7 @@ public class TableCellTests extends TestBase {
 				.navigate()
 				.getTableCell(0);
 
-		var tableCellControlExtension = new ReactTableCell(tableCell.unWrap());
-
-		var actualValue = tableCellControlExtension.getValue();
+		var actualValue = tableCell.getValue();
 
 		assertEquals(actualValue, expectedValue, "the first cell value should be got using a Control Extension.");
 	}
@@ -33,9 +31,8 @@ public class TableCellTests extends TestBase {
 		var tableCell = new WebTablesPage(this.driver)
 				.navigate()
 				.getTableCell(1);
-		var tableCellControlExtension = new ReactTableCell(tableCell.unWrap());
 
-		var actualValue = tableCellControlExtension.getValue();
+		var actualValue = tableCell.getValue();
 
 		assertEquals(actualValue, expectedValue, "the second cell value should be got using a Control Extension.");
 	}
@@ -45,7 +42,7 @@ public class TableCellTests extends TestBase {
 		var page = new WebTablesPage(this.driver)
 				.navigate();
 
-		assertThrows(ISE, () -> page.getTableCell(999));
+		assertThrows(IOOBE, () -> page.getTableCell(999));
 	}
 
 	@Test
@@ -53,8 +50,7 @@ public class TableCellTests extends TestBase {
 		var page = new WebTablesPage(this.driver)
 				.navigate();
 
-		assertThrows(ISE, () -> page.getTableCell(-1));
-
+		assertThrows(IOOBE, () -> page.getTableCell(-1));
 	}
 
 	@Test
@@ -65,11 +61,8 @@ public class TableCellTests extends TestBase {
 				.navigate()
 				.getTableCell((short)1);
 
-		var tableCellControlExtension = new ReactTableCell(tableCell.unWrap());
-
-		var actualValue = tableCellControlExtension.getValue();
+		var actualValue = tableCell.getValue();
 
 		assertEquals(actualValue, expectedValue, "the cell value should be got using a short index");
-
 	}
 }

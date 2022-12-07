@@ -52,9 +52,11 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 			}
 
 			var cellElement = cellElements.get(columnIndex);
-			var textToMatch = cellElement.getText();
+			var cell = new ReactTableCell(cellElement);
+			
+			var textToMatch = cell.getValue();
 
-			if (textToMatch.equalsIgnoreCase(cellValue)) {
+			if (textToMatch.equals(cellValue)) {
 				return row + 1;
 			}
 		}
