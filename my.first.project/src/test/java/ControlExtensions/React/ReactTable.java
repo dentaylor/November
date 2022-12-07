@@ -60,4 +60,10 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 		}
 		return 0;
 	}
+
+	@Override
+	public int findRow(String columnName, String cellValue) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
