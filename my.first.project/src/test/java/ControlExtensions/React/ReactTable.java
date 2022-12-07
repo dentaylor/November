@@ -42,18 +42,11 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 		var rowElementsCount = rowElements.size();
 
 		for(var row = 0; row < rowElementsCount; row++) {
-			var rowElement = rowElements.get(row);
-			var cellElements = rowElement.findElements(By.cssSelector("div[role=gridcell]"));
-			var cellElementsCount = cellElements.size();
-			var isValidColumnIndex = columnIndex < cellElementsCount && columnIndex > -1;
-
-			if(!isValidColumnIndex) {
-				throw new RuntimeException(columnIndex + " is not a valid column index. Ensure that row count is less than " + columnIndex);
-			}
-
-			var cellElement = cellElements.get(columnIndex);
-			var textToMatch = cellElement.getText();
-
+			
+			var tableRow = new ReactTableRow(rowElements.get(row));
+			var tableCell = tableRow.getCell(columnIndex);
+			
+			var textToMatch = tableCell.getValue();
 			if (textToMatch.equalsIgnoreCase(cellValue)) {
 				return row + 1;
 			}

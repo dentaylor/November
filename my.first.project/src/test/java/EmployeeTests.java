@@ -4,7 +4,6 @@ import Pages.WebTablesPage;
 import foundation.TestBase;
 
 import static org.testng.Assert.assertEquals;
-
 import org.testng.annotations.BeforeMethod;
 
 public class EmployeeTests extends TestBase {
@@ -20,7 +19,7 @@ public class EmployeeTests extends TestBase {
 		var department = "Compliance";
 		var expectedAge = "45";
 
-		var age = page.getAgeOfDepartmentEmployee(department );
+		var age = page.getAgeOfDepartmentEmployee(department);
 
 		assertEquals(age, expectedAge, "ReactTable control extension should get the correct value.");
 	}

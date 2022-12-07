@@ -8,7 +8,7 @@ public class ReactTableCell implements TableCell {
 
 	WebElement mappedElement;
 
-	public ReactTableCell (WebElement mappedElement) {
+	public ReactTableCell(WebElement mappedElement) {
 		this.mappedElement = mappedElement;
 	}
 

@@ -25,9 +25,10 @@ public class WebTablesPage extends PageObject {
 		return new ControlExtensions.React.ReactTable(webTable);
 	}
 
-	public ReactTableCell getTableCell(int s) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReactTableCell getTableCell(int row, int col) {
+		var tableRow = getTable().getRow(row);
+		var tableCell = tableRow.getCell(col);
+		return tableCell;
 	}
 
 	public String getAgeOfDepartmentEmployee(String department) {
@@ -46,5 +47,6 @@ public class WebTablesPage extends PageObject {
 		public static final int Age = 2;
 		public static final int Department = 5;
 		public static final int FirstName = 0;
+		public static final int LastName = 1;
 	}
 }
