@@ -2,7 +2,6 @@ package ControlExtensions.React;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,25 +13,24 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 
 	@Override
 	public ReactTableRow getRow(int ordinalRow) {
-		return new ReactTableRow(
-				mappedElement.findElement(By.xpath(String.format("//div[@class='rt-tr-group'][%d]", ordinalRow))));
+		return new ReactTableRow(getRowElements().get(ordinalRow - 1));
 	}
 
 	public ReactTableRow[] getRows() {
 		var rowElements = getRowElements();
-		
+
 		List<ReactTableRow> returnRows = new ArrayList<ReactTableRow>();
-		
+
 		for (WebElement element : rowElements) {
 			returnRows.add(new ReactTableRow(element));
 		}
 		return returnRows.toArray(new ReactTableRow[0]);
 	}
-	
-	public List<WebElement> getRowElements() {
+
+	private List<WebElement> getRowElements() {
 		var tableBody = mappedElement.findElement(By.cssSelector(".rt-tbody"));
 		var rowElements = tableBody.findElements(By.cssSelector("div[role=row]"));
-		
+
 		return rowElements;
 	}
 
@@ -56,7 +54,14 @@ public class ReactTable extends ControlExtensions.ControlExtension implements Co
 
 	@Override
 	public int findRow(String columnName, String cellValue) {
-		// TODO Auto-generated method stub
-		return 0;
+		var columnIndex = 0;
+		var headers = new ReactTableHeader(mappedElement).getColumnNamesByColumnIndex();
+
+		for (var header : headers.entrySet()) {
+			if (header.getValue().equals(columnName)) {
+				columnIndex = header.getKey();
+			}
+		}
+		return findRow(columnIndex, cellValue);
 	}
 }
