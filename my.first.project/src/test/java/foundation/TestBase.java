@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 public abstract class TestBase {
 	protected DriverManager manager;
 	protected WebDriver driver;
+	private PageRepository pageRepository;
 	
 	@BeforeMethod
 	public void setup() {
@@ -18,6 +19,8 @@ public abstract class TestBase {
 		this.driver = manager.getDriver();
 		this.driver.manage().window().maximize();
 		this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		this.pageRepository = new PageRepository(this.driver);
 	}
 
 	@AfterMethod
@@ -25,5 +28,9 @@ public abstract class TestBase {
 		if(this.driver != null) {
 			this.manager.quitDriver();
 		}
+	}
+	
+	protected PageRepository visit() {
+		return this.pageRepository;
 	}
 }
