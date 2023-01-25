@@ -8,9 +8,9 @@ public class ProductCategoriesTests extends AmpegTests {
 		var baseUrl = "https://ampeg.com/";
 		var expectedUrl = baseUrl + "products/classic/";
 
-		new ProductCategoryPage(this.driver, baseUrl).navigateDirect();
+		new ProductCategoryPage(this.driver.get(), baseUrl).navigateDirect();
 
-		var url = this.driver.getCurrentUrl();
+		var url = this.driver.get().getCurrentUrl();
 
 		assertEquals(url, expectedUrl, "should navigate directly to the page.");
 	}
@@ -20,7 +20,7 @@ public class ProductCategoriesTests extends AmpegTests {
 		var baseUrl = "https://ampeg.com/";
 		var expectedUrl = baseUrl + "products/classic/svt410hlf/";
 
-		var url = new ProductCategoryPage(this.driver, baseUrl)
+		var url = new ProductCategoryPage(this.driver.get(), baseUrl)
 				.navigateDirect()
 				.getSvt410HlfHref();
 
