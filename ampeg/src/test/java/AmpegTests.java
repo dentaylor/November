@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class AmpegTests {
-	public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+	protected static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	protected String baseUrl;
 
 	@BeforeMethod
@@ -21,7 +21,7 @@ public abstract class AmpegTests {
 	}
 
 	private void quitDriver() {
-		if(driver == null) {
+		if(driver.get() == null) {
 			return;
 		}
 		driver.get().quit();
