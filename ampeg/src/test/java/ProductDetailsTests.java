@@ -6,7 +6,7 @@ public class ProductDetailsTests extends AmpegTests {
 	public void ensureArtistIsDisplayedOnProductDetailsPage() {
 		var expectedArtistName = "Bootsy Collins";
 
-		var artistName = new HomePage(this.driver, this.baseUrl)
+		var artistName = new HomePage(this.driver.get(), this.baseUrl)
 				.clickProductsLink()
 				.clickClassicBassHeadsAndEnclosuresLink()
 				.clickProductDetailLink()
@@ -19,7 +19,7 @@ public class ProductDetailsTests extends AmpegTests {
 	public void ensureThatFirstSpecIsLfDrivers() {
 		var expectedText = "LF Drivers:";
 
-		var spec = new HomePage(this.driver, this.baseUrl)
+		var spec = new HomePage(this.driver.get(), this.baseUrl)
 				.clickProductsLink()
 				.clickClassicBassHeadsAndEnclosuresLink()
 				.clickProductDetailLink()

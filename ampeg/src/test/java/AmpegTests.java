@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public abstract class AmpegTests {
-	protected WebDriver driver;
+	protected static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	protected String baseUrl;
 
 	@BeforeMethod
@@ -21,20 +21,20 @@ public abstract class AmpegTests {
 	}
 
 	private void quitDriver() {
-		if(this.driver == null) {
+		if(driver.get() == null) {
 			return;
 		}
-		this.driver.quit();
+		driver.get().quit();
 	}
 
 	private void launchDriver() {
 		var driverPath = "C:\\Users\\dtaylor\\Downloads\\chromedriver_win32\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", driverPath);
 
-		this.driver = new ChromeDriver();		
+		driver.set(new ChromeDriver());		
 		
-		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		this.driver.manage().window().maximize();
-		this.driver.navigate().to(this.baseUrl);
+		driver.get().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get().manage().window().maximize();
+		driver.get().navigate().to(this.baseUrl);
 	}
 }
